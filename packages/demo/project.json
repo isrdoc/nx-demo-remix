@@ -1,0 +1,6 @@
+{
+  "root": "packages/demo",
+  "sourceRoot": "packages/demo",
+  "projectType": "application",
+  "tags": []
+}

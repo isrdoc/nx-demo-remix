@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "demo": "packages/demo"
+    "demo": "packages/demo",
+    "notifications": "packages/notifications"
   }
 }

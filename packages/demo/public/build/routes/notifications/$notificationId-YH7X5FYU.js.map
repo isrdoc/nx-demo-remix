@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/igorsrdoc/Documents/Code/Next/nx-demo-remix/packages/demo/app/routes/notifications/$notificationId.tsx?browser", "../../../../app/routes/notifications/$notificationId.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/igorsrdoc/Documents/Code/Next/nx-demo-remix/packages/demo/app/routes/notifications/$notificationId.tsx\";", "export default function Notification() {\n  return <div>Notification one</div>\n}\n"],
+  "mappings": ";;;;;;AAAA;;;ACAA;AAAe,wBAAwB;AACrC,SAAO,oCAAC,OAAD,MAAK;AAAA;",
+  "names": []
+}

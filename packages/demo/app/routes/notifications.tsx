@@ -5,31 +5,30 @@ import { useLoaderData, Form, useSubmit, useTransition } from '@remix-run/react'
 import { db } from '../utils/db.server'
 import type { Notification } from './notifications.types'
 
-const API = 'http://localhost:5001'
-
 type LoaderData = { notifications: Notification[] }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url)
   const search = new URLSearchParams(url.search)
-  const type = search.get('type')
+  const typeSearchQuery = search.get('type')
 
-  // Imitate slow network or server
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  // Imitate slow network/server
+  // await new Promise((resolve) => setTimeout(resolve, 2000))
 
   const allNotifications = (await db.notification.findMany({})) as Notification[]
-  let filteredNotifications = !type
+  let filteredNotifications = !typeSearchQuery
     ? ([] as Notification[])
-    : allNotifications.filter((notification) => notification.type.includes(type.toUpperCase()))
+    : allNotifications.filter((notification) => notification.type.includes(typeSearchQuery.toUpperCase()))
 
-  const data: LoaderData = { notifications: type ? filteredNotifications : allNotifications }
+  const notifications = typeSearchQuery ? filteredNotifications : allNotifications
+  const data: LoaderData = { notifications }
   return json(data)
 }
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
-  const type = form.get('type')
-  return redirect(`/notifications?type=${type}`)
+  const typeSearchQuery = form.get('type')
+  return redirect(`/notifications?type=${typeSearchQuery}`)
 }
 
 export default function Notifications() {
@@ -68,10 +67,10 @@ export default function Notifications() {
   )
 }
 
-// prettier-ignore
 const classes = {
-  'notifications__container': 'notifications__container',
-  'notifications__title': 'notifications__title',
-  'notifications__search-form': 'notifications__search-form',
-  'notifications__search-input': 'notifications__search-input',
-};
+  notifications__container: `notifications__container`,
+  notifications__title: `notifications__title
+    text-green-500 font-bold`,
+  'notifications__search-form': `notifications__search-form`,
+  'notifications__search-input': `notifications__search-input`,
+}

@@ -476,6 +476,8 @@ function RemixLogo() {
 // route:/Users/igorsrdoc/Documents/Code/Next/nx-demo-remix/packages/demo/app/routes/notifications.types.ts
 var notifications_types_exports = {};
 init_react();
+var import_client = require("@prisma/client");
+var notificationWithJsonData = import_client.Prisma.validator()({});
 
 // route:/Users/igorsrdoc/Documents/Code/Next/nx-demo-remix/packages/demo/app/routes/notifications.tsx
 var notifications_exports = {};
@@ -488,13 +490,29 @@ init_react();
 var import_node = require("@remix-run/node");
 var import_node2 = require("@remix-run/node");
 var import_react = require("@remix-run/react");
-var API = "http://localhost:5001";
+
+// app/utils/db.server.ts
+init_react();
+var import_client2 = require("@prisma/client");
+var db;
+if (false) {
+  db = new import_client2.PrismaClient();
+} else {
+  if (!global.__db) {
+    global.__db = new import_client2.PrismaClient();
+  }
+  db = global.__db;
+}
+
+// route:/Users/igorsrdoc/Documents/Code/Next/nx-demo-remix/packages/demo/app/routes/notifications.tsx
 var loader = async ({ request }) => {
   const url = new URL(request.url);
   const search = new URLSearchParams(url.search);
-  const searchResponse = await fetch(`${API}/search?type=${search.get("type") || ""}`);
-  const notifications = await searchResponse.json();
-  const data = { notifications };
+  const type = search.get("type");
+  await new Promise((resolve) => setTimeout(resolve, 2e3));
+  const allNotifications = await db.notification.findMany({});
+  let filteredNotifications = !type ? [] : allNotifications.filter((notification) => notification.type.includes(type.toUpperCase()));
+  const data = { notifications: type ? filteredNotifications : allNotifications };
   return (0, import_node2.json)(data);
 };
 var action = async ({ request }) => {
@@ -558,7 +576,7 @@ function Index() {
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 init_react();
-var assets_manifest_default = { "version": "ef922bbb", "entry": { "module": "/build/entry.client-7YUMSDSP.js", "imports": ["/build/_shared/chunk-YW7LCKII.js", "/build/_shared/chunk-E2FCH2UM.js", "/build/_shared/chunk-AYLS35XO.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-GC4DATGC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": true, "hasErrorBoundary": true }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-QW74FBS5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/notifications": { "id": "routes/notifications", "parentId": "root", "path": "notifications", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/notifications-SRCA276K.js", "imports": void 0, "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/notifications.types": { "id": "routes/notifications.types", "parentId": "root", "path": "notifications/types", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/notifications.types-B4WYUEOB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/notifications/$notificationId": { "id": "routes/notifications/$notificationId", "parentId": "routes/notifications", "path": ":notificationId", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/notifications/$notificationId-YH7X5FYU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-EF922BBB.js" };
+var assets_manifest_default = { "version": "fe959cd9", "entry": { "module": "/build/entry.client-7YUMSDSP.js", "imports": ["/build/_shared/chunk-YW7LCKII.js", "/build/_shared/chunk-E2FCH2UM.js", "/build/_shared/chunk-AYLS35XO.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-GC4DATGC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": true, "hasErrorBoundary": true }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-QW74FBS5.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/notifications": { "id": "routes/notifications", "parentId": "root", "path": "notifications", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/notifications-BMSJXXXP.js", "imports": void 0, "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/notifications.types": { "id": "routes/notifications.types", "parentId": "root", "path": "notifications/types", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/notifications.types-B4WYUEOB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/notifications/$notificationId": { "id": "routes/notifications/$notificationId", "parentId": "routes/notifications", "path": ":notificationId", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/notifications/$notificationId-YH7X5FYU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-FE959CD9.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

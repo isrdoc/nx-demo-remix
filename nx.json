@@ -29,5 +29,5 @@
       }
     ]
   },
-  "defaultProject": "notifications"
+  "defaultProject": "notifications-service"
 }

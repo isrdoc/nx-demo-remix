@@ -1,7 +1,7 @@
-import { redirect } from '@remix-run/node'
+import { redirect, json } from '@remix-run/node'
 import type { LoaderFunction, ActionFunction } from '@remix-run/node'
-import { json } from '@remix-run/node'
 import { useLoaderData, Form, useSubmit, useTransition } from '@remix-run/react'
+
 import { db } from '../utils/db.server'
 import type { Notification } from './notifications.types'
 

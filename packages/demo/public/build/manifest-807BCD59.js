@@ -1,1 +1,0 @@
-window.__remixManifest={"version":"807bcd59","entry":{"module":"/build/entry.client-4TIRD2V6.js","imports":["/build/_shared/chunk-LNJEPASK.js"]},"routes":{"root":{"id":"root","path":"","module":"/build/root-EURZKOPX.js","hasAction":false,"hasLoader":false,"hasCatchBoundary":true,"hasErrorBoundary":true}},"url":"/build/manifest-807BCD59.js"};

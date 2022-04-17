@@ -4,14 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "remix setup node",
-    "demo:prisma:schema": "yarn run demo:prisma:merge && yarn run demo:prisma:generate",
-    "demo:prisma:generate": "cd packages/demo && npx prisma generate",
-    "demo:prisma:merge": "cd packages/demo && yarn run prisma-merge -b 'prisma/base.prisma' -o 'prisma/schema.prisma' -s '**/*.prisma'",
-    "demo:prisma:seed:notifications": "ts-node packages/demo/app/routes/notifications.seed.ts"
-  },
-  "prisma": {
-    "seed": "yarn run demo:prisma:seed:notifications"
+    "postinstall": "remix setup node"
   },
   "workspaces": [
     "packages/*"

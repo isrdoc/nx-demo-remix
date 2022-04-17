@@ -8,8 +8,9 @@
     "resolveJsonModule": true,
     "target": "ES2019",
     "strict": true,
+    "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "@nx-demo-remix/utils-prisma-db": ["./packages/utils/prisma-db/src/index.ts"]
     },
     // Remix takes care of building everything in `remix build`.
     "noEmit": true

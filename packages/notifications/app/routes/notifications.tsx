@@ -4,6 +4,7 @@ import { useLoaderData, Form, useSubmit, useTransition } from '@remix-run/react'
 
 import { db } from './notifications.server'
 import type { Notification } from './notifications.types'
+import rootStyles from '../root.styles'
 
 // Use to demo call to express service with notifications
 // Run: yarn nx serve notifications-service
@@ -76,9 +77,13 @@ export default function Notifications() {
 }
 
 const classes = {
-  notifications__container: `notifications__container`,
-  notifications__title: `notifications__title
-    text-green-500 font-bold`,
-  'notifications__search-form': `notifications__search-form`,
-  'notifications__search-input': `notifications__search-input`,
+  ['notifications__container']: `notifications__container
+  ${rootStyles['page-px']} py-6`,
+
+  ['notifications__title']: `notifications__title
+  text-green-500 font-bold text-2xl`,
+
+  ['notifications__search-form']: `notifications__search-form`,
+
+  ['notifications__search-input']: `notifications__search-input`,
 }

@@ -2,14 +2,12 @@ import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useC
 import type { LinksFunction } from 'remix'
 
 import tailwind from './tailwind.css'
+import rootStyles from './root.styles'
 
-// https://remix.run/api/app#links
 export let links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: tailwind }]
 }
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
 export default function App() {
   return (
     <Document>
@@ -20,7 +18,6 @@ export default function App() {
   )
 }
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
 export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error)
   return (
@@ -37,7 +34,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
   )
 }
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
   let caught = useCatch()
 
@@ -76,7 +72,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={classes['app__body']}>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -88,35 +84,30 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="remix-app">
-      <header className="remix-app__header">
-        <div className="container remix-app__header-content">
-          <Link to="/" title="Remix" className="remix-app__header-home-link">
-            <RemixLogo />
-          </Link>
-          <nav aria-label="Main navigation" className="remix-app__header-nav">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <a href="https://remix.run/docs">Remix Docs</a>
-              </li>
-              <li>
-                <a href="https://github.com/remix-run/remix">GitHub</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <div className={classes['app__container']}>
+      <header className={classes['app__header']}>
+        <Link to="/" title="Remix" className={classes['app__header-logo']}>
+          <RemixLogo />
+        </Link>
+
+        <div className={classes['c-divider']} />
+
+        <nav aria-label="Main navigation" className={classes['app__header-navigation']}>
+          <ul className={classes['app__header-navigation-list']}>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+
+            <li>
+              <a href="/notifications">Notifications</a>
+            </li>
+          </ul>
+        </nav>
       </header>
+
       <div className="remix-app__main">
         <div className="container remix-app__main-content">{children}</div>
       </div>
-      <footer className="remix-app__footer">
-        <div className="container remix-app__footer-content">
-          <p>&copy; You!</p>
-        </div>
-      </footer>
     </div>
   )
 }
@@ -142,4 +133,32 @@ function RemixLogo() {
       <path d="M654.54 47.1035H611.788L592.332 74.2395L573.388 47.1035H527.564L568.78 103.168L523.98 161.28H566.732L589.516 130.304L612.3 161.28H658.124L613.068 101.376L654.54 47.1035Z" />
     </svg>
   )
+}
+
+const header_py = 'py-4'
+const header_text = 'text-lg'
+
+const classes = {
+  ['app__body']: `app__body
+  text-gray-800`,
+
+  ['c-divider']: `c-divider m-4`,
+
+  ['app__container']: `app__container`,
+
+  ['app__header']: `app__header
+  flex items-center
+  ${rootStyles['page-px']}
+  bg-gray-200`,
+
+  ['app__header-logo']: `app__header-logo
+  ${header_py}`,
+
+  ['app__header-navigation']: `app__header-navigation
+  ${header_py}`,
+
+  ['app__header-navigation-list']: `app__header-navigation-list
+  flex
+  ${header_text}
+  gap-x-4`,
 }

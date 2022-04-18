@@ -2,8 +2,7 @@ import { redirect, json } from '@remix-run/node'
 import type { LoaderFunction, ActionFunction } from '@remix-run/node'
 import { useLoaderData, Form, useSubmit, useTransition } from '@remix-run/react'
 
-// import { db } from '../utils/db.server'
-import { db } from '@nx-demo-remix/utils-prisma-db'
+import { db } from './notifications.server'
 import type { Notification } from './notifications.types'
 
 type LoaderData = { notifications: Notification[] }

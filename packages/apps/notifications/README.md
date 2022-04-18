@@ -8,7 +8,7 @@
 From your terminal:
 
 ```sh
-npx nx dev notifications
+npx nx dev apps-notifications
 ```
 
 This starts your app in development mode, rebuilding assets on file changes.
@@ -18,13 +18,13 @@ This starts your app in development mode, rebuilding assets on file changes.
 First, build your app for production:
 
 ```sh
-npx nx build notifications
+npx nx build apps-notifications
 ```
 
 Then run the app in production mode:
 
 ```sh
-npx nx start notifications
+npx nx start apps-notifications
 ```
 
 Now you'll need to pick a host to deploy it to.
@@ -35,8 +35,8 @@ If you're familiar with deploying node applications, the built-in Remix app serv
 
 Make sure to deploy the output of `remix build`
 
-- `packages/notifications/build/`
-- `packages/notifications/public/build/`
+- `packages/apps-notifications/build/`
+- `packages/apps-notifications/public/build/`
 
 ### Using a Template
 

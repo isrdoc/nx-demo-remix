@@ -1,8 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "notifications": "packages/notifications",
-    "notifications-service": "packages/notifications-service",
+    "apps-notifications": "packages/apps/notifications",
+    "apps-notifications-service": "packages/apps/notifications-service",
     "utils-prisma-db": "packages/utils/prisma-db"
   }
 }

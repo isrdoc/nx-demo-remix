@@ -1,0 +1,52 @@
+{
+  "root": "packages/apps/notifications-service",
+  "sourceRoot": "packages/apps/notifications-service/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/apps/notifications-service",
+        "main": "packages/apps/notifications-service/src/main.ts",
+        "tsConfig": "packages/apps/notifications-service/tsconfig.app.json",
+        "assets": ["packages/apps/notifications-service/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "packages/apps/notifications-service/src/environments/environment.ts",
+              "with": "packages/apps/notifications-service/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "apps-notifications-service:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/apps/notifications-service/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/apps/notifications-service"],
+      "options": {
+        "jestConfig": "packages/apps/notifications-service/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

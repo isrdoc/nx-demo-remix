@@ -1,0 +1,6 @@
+{
+  "root": "packages/apps/notifications",
+  "sourceRoot": "packages/apps/notifications",
+  "projectType": "application",
+  "tags": []
+}

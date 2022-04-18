@@ -7,7 +7,7 @@ import type { Notification } from './notifications.types'
 import rootStyles from '../root.styles'
 
 // Use to demo call to express service with notifications
-// Run: yarn nx serve notifications-service
+// Run: yarn nx serve apps/notifications-service
 // const API = 'http://localhost:5001'
 
 type LoaderData = { notifications: Notification[] }

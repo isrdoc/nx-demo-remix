@@ -5,6 +5,10 @@ import { useLoaderData, Form, useSubmit, useTransition } from '@remix-run/react'
 import { db } from './notifications.server'
 import type { Notification } from './notifications.types'
 
+// Use to demo call to express service with notifications
+// Run: yarn nx serve notifications-service
+// const API = 'http://localhost:5001'
+
 type LoaderData = { notifications: Notification[] }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -14,6 +18,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   // Imitate slow network/server
   // await new Promise((resolve) => setTimeout(resolve, 2000))
+
+  // Use to demo call to express service with notifications
+  // const searchResponse = await fetch(`${API}/search?type=${search.get('type') || ''}`)
+  // const notifications = await searchResponse.json()
 
   const allNotifications = (await db.notification.findMany({})) as Notification[]
   let filteredNotifications = !typeSearchQuery
